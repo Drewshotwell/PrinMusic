@@ -1,0 +1,86 @@
+IMPORTANT!!!
+
+To add a new Instrument Model, what you need to modify is the modMap in main.
+Map the channel to the name of your class, and you should be good to go!
+
+Also, each subclass of InstrumentModel needs a makeOptions function that
+returns an object with all the different camera views you want the user
+to see. There are default camera positions in the InstrumentModel
+version of this function. Look at the MusicBox version as a reference.
+
+InstrumentModel:
+
+The constructor of Instrument Model as we have it takes in a song,
+channel, and size. The size is optional, but the song is necessary
+to get certain things like range of notes played, and the channel
+is necessary to get the proper notes out of the notesMap in the song.
+
+Has an updateTime function with the parameter time, which is the
+current time of the animation from when the start button is pressed
+in seconds. It will call the updateTime function of each of its
+children, so make sure they all have one, even if it's empty.
+
+Song:
+
+A more contained way to deal with midi data that is used instead of having to 
+directly access the midi functions.
+
+Constructor takes in a midi file name to convert into our data, a beats per
+minute parameter to allow for different speeds, and an instrument list.
+The instrument list is for overriding the instruments already taken from the
+midi file. If you are fine with those instruments, there is no need to add
+an instrument list. If you want to override any that aren't the first, fill
+the other items with undefined. Ex. [undefined, undefined, 'celesta']
+
+Has member data...
+midPlayer: the midi player
+notesMap: a map from each channel to its notes
+cnlList: a list of the channels in the correct order
+started: a boolean for communicating when the song starts
+loaded: a boolean for communicating when the notesMap is populated
+
+Has a logNotes function in the constructor that is called once the midi file
+is loaded, and fills the notes array with helpful data such as which note is
+played, the start time of that note, and the end time of that note. Since
+this information is only given by the midi player as the song is played, the
+song is played muted, at 100x speed to quickly gather this data.
+
+Has a startPlayer function in the constructor as well that will begin the
+animation once the user tells it to begin when everything is loaded and the
+user presses "Start"
+
+Has an update function that uses the parameter, drawnFrames, to gather which
+frame the animation is currently on and figure out whether the song needs to
+loop or not. This function also updates the current time of the player and
+resumes the player's song, which is important for muting.
+
+Has a toggle function that mutes and unmutes the instrument based on the
+channel given. It accomplishes this by pausing the player, which is later
+resumed in the update function.
+
+Has a getRange function that will return the highest note played (max), lowest
+note played (min), and the range of notes played (keys). The keys is max-min+1
+to include both the highest and lowest notes.
+
+Texture:
+
+This class is optional to use, but I just found it useful to generalize more
+complex texture creation.
+
+Has a constructor that takes in a prefix, list of suffixes, maxHeight, repeat list,
+and a boolean for physical or not physical material.
+
+The prefix is the name of the texture, Ex. Wood_04_.
+The suffixes are used for the picture type such as 'jpg' and 'png'
+Put any falsey value in slots where you do not want to use that map.
+The order is baseColor, normal, height, roughness, ambientOcclusion.
+
+Make sure all your textures are in the Resources/Textures folder
+and have the proper names for each file as listed above.
+Ex. Wood_04_baseColor.jpg
+
+The maxHeight is specifically for the height mapping. Leave falsey if you
+don't use height mapping
+
+The repeat list has two values representing how many times wrapped in
+S and T respecively.

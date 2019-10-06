@@ -1,0 +1,73 @@
+MusicBox:
+Contains CylinderPlayer, CylinderHolder, and Harp
+
+At the origin, the object is shown from the right side with the z-axis going
+through the center of the cylinder
+
+Constructor takes in a song, channel, and size, with a default value of 5, and passes
+those values to its children
+
+Has an updateTime function that calls
+all the updateTime functions of its children with the parameter, time
+
+
+CylinderPlayer:
+Contains big Cylinder Mesh as well as nibs for every note played in the song
+
+At the origin, the object is shown from the right side with the z-axis going
+through the center of the cylinder
+
+Constructor takes in a song to get the notes for the nibs and get the length
+of the song. It takes in a size to make the cylinder larger or smaller.
+The nibs will always stay the same size, and it also takes in a channel
+in order to know which instrument in the file to represent.
+
+Has an addNibs function that contains a makeNib function that can take a note,
+width, and spacing to make the nib with the proper size and transform.
+The addNibs function then adds those nibs as children of the player, but
+the nibs' parent is the musicBox itself to get proper rotation and translation
+
+Has an updateTime function that uses the parameter, time, to rotate the cylinder
+and its nibs based on the current frame and the length of the song
+
+Has a makeRidges function that will take a geometry and push out every other
+x line to give a ridged look to it
+
+CylinderHolder:
+Contains a wooden holder, golden cones that connect the holder to the cylinder
+player, and two golden rods that stick out to connect the holder to the harp
+
+At the origin, the object is shown looking straight on so it looks like a field
+goal.
+
+Constructor takes in a size to scale the holder by. Must be the same size as the
+cylinder player to work properly.
+
+Has an updateTime that does nothing because it has no moving parts, but it's
+necessary to have it there for the MusicBox updateTime to work.
+
+Harp:
+Contains a wooden anchor, metal keys for each note in the range the song requires,
+and the anchor connects to the holder to pull the harp in and out of range
+of the passing nibs, which gives the muting capabilities
+
+At the origin, the object is shown straight on with the highest note on your
+right and the lowest on your left
+
+Constructor takes in a song to get the range of keys played, the size
+to get the key width and length, and the channel to know which instrument
+in the file to represent. The constructor is where the wooden anchor is set up
+
+Has an updateTime function that uses the parameter, time, to figure out which
+key(s) need to be triggered to turn on or off based on the current frame and
+next frame's times.
+
+Has a keyOn function that takes in a key's mesh and adds a duplicated
+and transformed key to the children of the Harp to give vibrating effect
+
+Has a keyOff function that takes in a key's mesh and removes the duplicated
+key and sets that key off
+
+Has a rotHingeMat function that takes in a radian value and length, and it
+returns the correct matrix to rotate the key on a hinge. This is necessary
+because any roatations on objects are always done about its origin
