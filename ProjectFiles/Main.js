@@ -16,7 +16,7 @@ function main() {
    /* MESHES */
    // Plane Texture
    const grassTex = new THREE.TextureLoader().load(
-    '../Resources/Textures/grass20.png');
+    '../Textures/grass20.png');
    grassTex.repeat = new THREE.Vector2(100, 100);
    grassTex.wrapS = THREE.RepeatWrapping;
    grassTex.wrapT = THREE.RepeatWrapping;
@@ -38,7 +38,7 @@ function main() {
    skyGmy.computeBoundingSphere();
    const bndSphere = skyGmy.boundingSphere;
    const skyTex = new THREE.TextureLoader().load(
-    '../Resources/Textures/chapel_green_pano.jpg');
+    '../Textures/chapel_green_pano.jpg');
    // Used to be 4096 x 1875
 	const skyMat = new THREE.MeshBasicMaterial({map: skyTex});
             
