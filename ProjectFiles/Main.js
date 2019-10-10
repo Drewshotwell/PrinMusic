@@ -38,7 +38,7 @@ function main() {
    skyGmy.computeBoundingSphere();
    const bndSphere = skyGmy.boundingSphere;
    const skyTex = new THREE.TextureLoader().load(
-    '../Textures/chapel_green_pano.jpg');
+    '../Resources/Textures/chapel_green_pano.jpg');
    // Used to be 4096 x 1875
 	const skyMat = new THREE.MeshBasicMaterial({map: skyTex});
             
