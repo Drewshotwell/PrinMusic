@@ -16,7 +16,7 @@ class Song {
       this.started = false;
       this.loaded = false;
       
-      fileName = "../MidiFiles/" + fileName;
+      fileName = "../Resources/MidiFiles/" + fileName;
       
       MIDI.loadPlugin({
          onsuccess: function() {
@@ -27,7 +27,7 @@ class Song {
             player.loadFile(fileName, logNotes, instList);
             self.midPlayer = player;
          },
-         soundfontUrl: "../soundfont/FluidR3_GM/",
+         soundfontUrl: "../Resources/soundfont/FluidR3_GM/",
          instruments: instList,
       });
       document.getElementById("startButton").addEventListener('click', () => {
