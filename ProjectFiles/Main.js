@@ -16,7 +16,7 @@ function main() {
    /* MESHES */
    // Plane Texture
    const grassTex = new THREE.TextureLoader().load(
-    '../../PrinMusic/Resources/Textures/grass20.png');
+    '/Resources/Textures/grass20.png');
    grassTex.repeat = new THREE.Vector2(100, 100);
    grassTex.wrapS = THREE.RepeatWrapping;
    grassTex.wrapT = THREE.RepeatWrapping;
