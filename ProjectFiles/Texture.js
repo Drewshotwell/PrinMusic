@@ -16,7 +16,7 @@ const Texture = function (prefix, suffixes, maxHeight, repeat, pys) {
    }
    var maps = {};
    
-   prefix = "../Resources/Textures/" + prefix;
+   prefix = "../../PrinMusic/Resources/Textures/" + prefix;
     
    mapFiles.forEach((mapFile) => {
       var map = new THREE.TextureLoader().load(prefix + mapFile);
