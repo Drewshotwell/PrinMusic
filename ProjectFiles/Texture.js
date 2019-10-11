@@ -14,10 +14,12 @@ const Texture = function (prefix, suffixes, maxHeight, repeat, pys) {
       if (suffix)
          mapFiles.push(mapNames[i] + suffix);
    }
-   var maps = {};
    
-   prefix = "/Resources/Textures/" + prefix;
-    
+   var maps = {};
+
+   prefix = location.pathname !== "/index.html" ? location.pathname : ".."
+      + "/Resources/Textures/" + prefix;
+
    mapFiles.forEach((mapFile) => {
       var map = new THREE.TextureLoader().load(prefix + mapFile);
       map.repeat = new THREE.Vector2(repeat[0], repeat[1]);
