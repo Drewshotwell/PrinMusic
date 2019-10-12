@@ -13,11 +13,8 @@ function main() {
     window.innerWidth / window.innerHeight, 0.1, 1000)
    camera.position.x = -2000;
    
-   const texUrlPath = (location.pathname !== "/index.html" ?
-      location.pathname : "..") + "/Resources/Textures/";
-
-   console.log(texUrlPath);
-
+   const texUrlPath = location.pathname + "Resources/Textures/";
+   
    /* MESHES */
    // Plane Texture
    const grassTex = new THREE.TextureLoader().load(
@@ -114,7 +111,7 @@ function main() {
    controls.enabled = false;
    
    /* SONG */
-   const song = new Song('Popcorn.mid', 120, [null, null, "drum_set"]);
+   const song = new Song("Popcorn.mid", 120, [null, null, "drum_set"]);
    
    const modMap = {
       'cnl0': MusicBox,

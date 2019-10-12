@@ -16,7 +16,7 @@ class Song {
       this.started = false;
       this.loaded = false;
       
-      fileName = "../Resources/MidiFiles/" + fileName;
+      const midiUrlPath = location.pathname + "Resources/MidiFiles/";
       
       MIDI.loadPlugin({
          onsuccess: function() {
@@ -24,10 +24,10 @@ class Song {
             player = MIDI.Player;
             player.timeWarp = 0.01; // Song speed (lower = faster)
             player.BPM = bpm;
-            player.loadFile(fileName, logNotes, instList);
+            player.loadFile(midiUrlPath + fileName, logNotes, instList);
             self.midPlayer = player;
          },
-         soundfontUrl: "../Resources/soundfont/FluidR3_GM/",
+         soundfontUrl: location.pathname + "Resources/soundfont/FluidR3_GM/",
          instruments: instList,
       });
       document.getElementById("startButton").addEventListener('click', () => {
