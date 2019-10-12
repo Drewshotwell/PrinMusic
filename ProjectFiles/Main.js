@@ -13,8 +13,10 @@ function main() {
     window.innerWidth / window.innerHeight, 0.1, 1000)
    camera.position.x = -2000;
    
-   const texUrlPath = location.pathname !== "/index.html" ?
-      location.pathname : ".." + "/Resources/Textures/";
+   const texUrlPath = (location.pathname !== "/index.html" ?
+      location.pathname : "..") + "/Resources/Textures/";
+
+   console.log(texUrlPath);
 
    /* MESHES */
    // Plane Texture

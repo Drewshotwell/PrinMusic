@@ -3,7 +3,7 @@
  * @author cameron wood <cameron.wood@principia.edu>
  */
 
-const Texture = function (prefix, suffixes, maxHeight, repeat, pys) {
+const Texture = function(name, suffixes, maxHeight, repeat, pys) {
    var texture = {};
       
    const mapNames = ['basecolor.', 'normal.',
@@ -14,14 +14,16 @@ const Texture = function (prefix, suffixes, maxHeight, repeat, pys) {
       if (suffix)
          mapFiles.push(mapNames[i] + suffix);
    }
-   
+
    var maps = {};
 
-   prefix = location.pathname !== "/index.html" ? location.pathname : ".."
-      + "/Resources/Textures/" + prefix;
+   const texUrlPath = (location.pathname !== "/index.html" ?
+      location.pathname : "..") + "/Resources/Textures/";
 
-   mapFiles.forEach((mapFile) => {
-      var map = new THREE.TextureLoader().load(prefix + mapFile);
+   console.log(texUrlPath);
+
+   mapFiles.forEach(mapFile => {
+      var map = new THREE.TextureLoader().load(texUrlPath + name + mapFile);
       map.repeat = new THREE.Vector2(repeat[0], repeat[1]);
       map.wrapS = THREE.RepeatWrapping;
       map.wrapT = THREE.RepeatWrapping;
