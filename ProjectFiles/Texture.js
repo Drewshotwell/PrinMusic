@@ -19,8 +19,6 @@ const Texture = function(name, suffixes, maxHeight, repeat, pys) {
 
    const texUrlPath = location.pathname + "Resources/Textures/";
 
-   console.log(texUrlPath);
-
    mapFiles.forEach(mapFile => {
       var map = new THREE.TextureLoader().load(texUrlPath + name + mapFile);
       map.repeat = new THREE.Vector2(repeat[0], repeat[1]);

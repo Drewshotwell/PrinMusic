@@ -61,15 +61,12 @@ function main() {
    dirLgt.shadow.camera.far = 200;
    dirLgt.shadow.mapSize.width = 4096;
    dirLgt.shadow.mapSize.height = 4096;
-   const dirLgtHelper = new THREE.DirectionalLightHelper(dirLgt);
-   const dirCameraHelper = new THREE.CameraHelper(dirLgt.shadow.camera);
-   scene.add(dirLgt, dirLgtHelper, dirCameraHelper);
+   scene.add(dirLgt);
 
    const recalculateLighting = function (modLst, lgt) {
       const castShadow = function(obj) {
          obj.castShadow = true;
          obj.receiveShadow = true;
-         //console.log(this);
          if (obj.children) {
             obj.children.forEach(child => castShadow(child));
          }
@@ -248,9 +245,7 @@ function main() {
 
          // Update light positions
          dirLgt.target.updateMatrixWorld();
-         dirLgtHelper.update();
          dirLgt.shadow.camera.updateProjectionMatrix();
-         dirCameraHelper.update();
          if (!hasRendered && song.loaded && time < drawnFrames + 1/fps) {
             document.getElementById("startButton").style.display = 'block';
             document.getElementById("loading").style.display = 'none';

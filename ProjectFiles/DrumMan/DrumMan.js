@@ -15,7 +15,7 @@ class DrumMan extends THREE.Group {
       // MIDI indices for the left and right percussion instruments
       this.leftArmIdx = song.getRange().min;
       this.rightArmIdx = song.getRange().max;
-      console.log(this.leftArmIdx, this.rightArmIdx);
+      //console.log(this.leftArmIdx, this.rightArmIdx);
 
       // Main body
       const bodyGeo = new THREE.BoxBufferGeometry(1, 3, 1);
