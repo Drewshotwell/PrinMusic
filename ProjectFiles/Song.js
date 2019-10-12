@@ -27,13 +27,13 @@ class Song {
             player.loadFile(midiUrlPath + fileName, logNotes, instList);
             self.midPlayer = player;
          },
-         soundfontUrl: location.pathname + "Resources/soundfont/FluidR3_GM/",
+         soundfontUrl: (location.pathname + "Resources/soundfont/FluidR3_GM/"),
          instruments: instList,
       });
       document.getElementById("startButton").addEventListener('click', () => {
          if (self.loaded) {
             player.timeWarp = 1;
-            player.loadFile(fileName, startPlayer, instList);
+            player.loadFile(midiUrlPath + fileName, startPlayer, instList);
             self.midPlayer = player;
             document.getElementById("startButton").style.display = 'none';
          }
