@@ -17,7 +17,7 @@ const Texture = function(name, suffixes, maxHeight, repeat, pys) {
 
    var maps = {};
 
-   const texUrlPath = "../Resources/Textures/";
+   const texUrlPath = location.pathname + "Resources/Textures/";
 
    console.log(texUrlPath);
 
