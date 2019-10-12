@@ -6,7 +6,7 @@
 const Texture = function(name, suffixes, maxHeight, repeat, pys) {
    var texture = {};
       
-   const mapNames = ['basecolor.', 'normal.',
+   const mapNames = ['baseColor.', 'normal.',
                      'height.', 'roughness.', 'ambientOcclusion.'];
    var mapFiles = [];
    for (let i = 0; i < suffixes.length; i++) {
@@ -28,8 +28,8 @@ const Texture = function(name, suffixes, maxHeight, repeat, pys) {
       map.wrapT = THREE.RepeatWrapping;
       maps[mapFile.substring(0, mapFile.length - 4)] = map;    
    });
-   if (maps['basecolor'])
-      texture.map = maps['basecolor'];
+   if (maps['baseColor'])
+      texture.map = maps['baseColor'];
    if (maps['normal'])
       texture.normalMap = maps['normal'];
    if (maps['height']) {
