@@ -91,10 +91,10 @@ class Song {
       else
          MIDI.channels[`${cnlId}`].mute = true;*/
    }
-   getRange(cnlId) {
+   getRange(cnl) {
       var max = 1, min = 88;
       
-      this.notesMap[`cnl${cnlId}`].forEach(function(note) {
+      this.notesMap[cnl].forEach(function(note) {
          var val = note.note;
          if (val > max)
             max = val;

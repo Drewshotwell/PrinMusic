@@ -150,7 +150,7 @@ MusicBox.Harp = class Harp extends THREE.Group {
       const anmTime = 10.0;
       if (!MIDI.channels[this.cnl].mute && this.song.started) {
          // Setting of key logic
-         for (let nte of this.song.notesMap[`cnl${this.cnl}`]) {
+         for (let nte of this.song.notesMap[this.cnl]) {
             const nteKey = this.keys[nte.note -
              this.song.getRange(this.cnl).min];
             // If curTime is greater than nxtTime, must be last note
