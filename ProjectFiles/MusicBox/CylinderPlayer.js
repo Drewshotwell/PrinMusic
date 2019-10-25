@@ -62,7 +62,8 @@ MusicBox.CylinderPlayer = class CylinderPlayer extends THREE.Group {
 
          return mesh;
       }
-      this.song.notesMap[`cnl${this.cnl}`].forEach(note => {
+      this.song.notesMap[Object.keys(this.song.notesMap)[this.cnl]].forEach
+       (note => {
          const kys = this.song.getRange(this.cnl).keys;
          this.add(makeNib(note, this.size*this.nibRat /
           ((kys*this.nibRat) + kys + 1),
