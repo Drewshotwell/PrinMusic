@@ -218,7 +218,7 @@ function main() {
             Object.keys(options).forEach(option => {
                instFld.add(options, option);
             });
-         });
+         };
          // Resetting light
          recalculateLighting(instMods, dirLgt);
          scene.add(...instMods); 
