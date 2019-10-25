@@ -172,7 +172,7 @@ function main() {
       requestAnimationFrame(animate);
       if (song.loaded && instMods.length === 0) { // Don't add till song loads
          // defaults all non specified channels to MusicBox
-         for (var i = 0; i < Object.keys(song.notesMap).length; i++) {\
+         for (var i = 0; i < Object.keys(song.notesMap).length; i++) {
             if (!modList[i])
                modList[i] = MusicBox;
          }
