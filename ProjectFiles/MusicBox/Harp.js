@@ -148,7 +148,7 @@ MusicBox.Harp = class Harp extends THREE.Group {
       const curTime = time % this.song.midPlayer.endTime;
       const nxtTime = (time + (1 / 24) * 1000) % this.song.midPlayer.endTime;
       const anmTime = 10.0;
-      if (!MIDI.channels[this.cnl].mute && this.song.started) {
+      if (!MIDI.channels[this.cnl.substring(3)].mute && this.song.started) {
          // Setting of key logic
          for (let nte of this.song.notesMap[this.cnl]) {
             const nteKey = this.keys[nte.note -
