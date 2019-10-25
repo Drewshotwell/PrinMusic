@@ -203,7 +203,7 @@ function main() {
             }   
             if (instCnt > 1)
                instFld = gui.addFolder(
-                  `${modList[cnl].title} ${instNum}`);
+                  `${modList[j].title} ${instNum}`);
             else
                instFld = gui.addFolder(modList[cnl].title);
             
