@@ -3,10 +3,10 @@
  * @author cameron wood <cameron.wood@principia.edu>
  */
 
-const Texture = function (prefix, suffixes, maxHeight, repeat, pys) {
+const Texture = function(name, suffixes, maxHeight, repeat, pys) {
    var texture = {};
       
-   const mapNames = ['basecolor.', 'normal.',
+   const mapNames = ['baseColor.', 'normal.',
                      'height.', 'roughness.', 'ambientOcclusion.'];
    var mapFiles = [];
    for (let i = 0; i < suffixes.length; i++) {
@@ -14,19 +14,20 @@ const Texture = function (prefix, suffixes, maxHeight, repeat, pys) {
       if (suffix)
          mapFiles.push(mapNames[i] + suffix);
    }
+
    var maps = {};
-   
-   prefix = "../Resources/Textures/" + prefix;
-    
-   mapFiles.forEach((mapFile) => {
-      var map = new THREE.TextureLoader().load(prefix + mapFile);
+
+   const texUrlPath = location.pathname + "Resources/Textures/";
+
+   mapFiles.forEach(mapFile => {
+      var map = new THREE.TextureLoader().load(texUrlPath + name + mapFile);
       map.repeat = new THREE.Vector2(repeat[0], repeat[1]);
       map.wrapS = THREE.RepeatWrapping;
       map.wrapT = THREE.RepeatWrapping;
       maps[mapFile.substring(0, mapFile.length - 4)] = map;    
    });
-   if (maps['basecolor'])
-      texture.map = maps['basecolor'];
+   if (maps['baseColor'])
+      texture.map = maps['baseColor'];
    if (maps['normal'])
       texture.normalMap = maps['normal'];
    if (maps['height']) {
