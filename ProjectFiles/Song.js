@@ -93,7 +93,6 @@ class Song {
    }
    getRange(cnl) {
       var max = 1, min = 88;
-      
       this.notesMap[cnl].forEach(function(note) {
          var val = note.note;
          if (val > max)

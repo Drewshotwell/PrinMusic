@@ -13,8 +13,8 @@ class DrumMan extends THREE.Group {
       this.muteAnm = 0;
 
       // MIDI indices for the left and right percussion instruments
-      this.leftArmIdx = song.getRange().min;
-      this.rightArmIdx = song.getRange().max;
+      this.leftArmIdx = song.getRange(cnl).min;
+      this.rightArmIdx = song.getRange(cnl).max;
       //console.log(this.leftArmIdx, this.rightArmIdx);
 
       // Main body
@@ -54,7 +54,7 @@ class DrumMan extends THREE.Group {
       const curTime = time % this.song.midPlayer.endTime;
       const nxtTime = (time + (1 / 24) * 1000) % this.song.midPlayer.endTime;
       if (!MIDI.channels[this.cnl].mute && this.song.started) {
-         for (let nte of this.song.notesMap[`cnl${this.cnl}`]) {
+         for (let nte of this.song.notesMap[cnl]) {
             const nteKey = this.keys[nte.note -
              this.song.getRange(this.cnl).min];
             // If curTime is greater than nxtTime, must be last note
