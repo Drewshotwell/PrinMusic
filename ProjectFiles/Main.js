@@ -110,7 +110,7 @@ function main() {
    /* SONG */
    const song = new Song('GraphicSong.mid', 120, [null, "drum_set"]);
    
-   const modList = { DrumMan, MusicBox };
+   const modList = [DrumMan, MusicBox];
 
    /* USER INTERFACE */
    const gui = new GUI();
