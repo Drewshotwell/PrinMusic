@@ -108,10 +108,11 @@ function main() {
    controls.enabled = false;
    
    /* SONG */
-   const song = new Song('GraphicSong.mid', 120, [null, "drum_set"]);
+   const song = new Song('GraphicSong.mid', 120, ["drum_set"]);
    
    const modList = [DrumMan, MusicBox];
-
+   console.log(modList[0]);
+   console.log(modList[1]);
    /* USER INTERFACE */
    const gui = new GUI();
    GUI.toggleHide();
@@ -174,7 +175,7 @@ function main() {
       if (song.loaded && instMods.length === 0) { // Don't add till song loads
          // defaults all non specified channels to MusicBox
          for (var i = 0; i < Object.keys(song.notesMap).length; i++) {
-            console.log(modList[i]);
+            console.log(modList[i], i);
             if (!modList[i])
                modList[i] = MusicBox;
          }
