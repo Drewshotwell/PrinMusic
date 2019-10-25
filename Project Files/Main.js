@@ -109,10 +109,11 @@ function main() {
    controls.enabled = false;
    
    /* SONG */
-   const song = new Song('Popcorn.mid', 120, [null, null, "drum_set"]);
+   const song = new Song('GraphicSong.mid', 120, [null, "drum_set"]);
    
    const modMap = {
       'cnl0': MusicBox,
+      'cnl1': DrumMan
    };
 
    /* USER INTERFACE */
