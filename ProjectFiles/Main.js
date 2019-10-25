@@ -110,10 +110,7 @@ function main() {
    /* SONG */
    const song = new Song('GraphicSong.mid', 120, [null, "drum_set"]);
    
-   const modMap = {
-      'cnl0': MusicBox,
-      'cnl1': DrumMan
-   };
+   const modList = { MusicBox, DrumMan };
 
    /* USER INTERFACE */
    const gui = new GUI();
@@ -175,12 +172,16 @@ function main() {
    function animate(time) {
       requestAnimationFrame(animate);
       if (song.loaded && instMods.length === 0) { // Don't add till song loads
-         Object.keys(song.notesMap).forEach(cnl => {
-            // |newMod| is determined by the map, or defaults to |MusicBox|
-            const newMod = modMap[cnl] ?
-               new modMap[cnl](song, cnl.substring(3)) :
-               new MusicBox(song, cnl.substring(3));
+         for (var i = 0; i < Object.keys(song.notesMap).length; i++) {
+            // defaults all non specified channels to MusicBox
+            if (!modList[i])
+               modList[i] = MusicBox;
+         }
+         for (var j = 0; j < Object.keys(song.notesMap).length; j++) {
+            var cnl = Object.keys(song.notesMap)[j];
             
+            // |newMod| is determined by the list           
+            const newMod = new modList[j](song, cnl);
             // Set up of newly created model within scene
             placeMod(newMod, instMods, instMods.length !== 0 ?
                new THREE.Vector3(0, 0,
@@ -188,31 +189,23 @@ function main() {
                new THREE.Vector3(0, 0, 0));
             // Add to UI with instrument info
             var instFld;
+            var instCnt = 0;
             var instNum = 0;
-            if (modMap[cnl]) {
-               const topCnl = cnl;
-               song.cnlList.forEach(cnl => {
-                  if (modMap[cnl] == modMap[topCnl] || (modMap[topCnl] ==
-                      MusicBox && !modMap[cnl]))
+            // Counting how many of same instrument are before current instance
+            for (var k = 0; k < Object.keys(song.notesMap).length; k++) {
+               if (modList[j] == modList[k]) {
+                  if (j >= k)
                      instNum++;
-               });
-               if (instNum > 1)
-                  instFld = gui.addFolder(
-                     `${modMap[cnl].title} ${song.cnlList.indexOf(cnl) + 1}`);
-               else
-                  instFld = gui.addFolder(modMap[cnl].title);
-            }
-            else {
-               song.cnlList.forEach(cnl => {
-                  if (!modMap[cnl] || modMap[cnl] == MusicBox)
-                     instNum++;
-               });
-               if (instNum > 1)
-                  instFld = gui.addFolder(
-                     `Music Box ${song.cnlList.indexOf(cnl) + 1}`);
-               else
-                  instFld = gui.addFolder("Music Box");
-            }
+                  instCnt++;
+               }
+               if (instCnt > 1)                     
+                  break;
+            }   
+            if (instCnt > 1)
+               instFld = gui.addFolder(
+                  `${modList[cnl].title} ${instNum}`);
+            else
+               instFld = gui.addFolder(modList[cnl].title);
             
             instFld.add({
                Mute: function() {

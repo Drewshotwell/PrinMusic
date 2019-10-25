@@ -12,7 +12,6 @@ class Song {
       
       this.midPlayer;
       this.notesMap;
-      this.cnlList = [];
       this.started = false;
       this.loaded = false;
       
@@ -67,7 +66,6 @@ class Song {
          }
          self.loaded = true;
          self.notesMap = notesMap;
-         Object.keys(notesMap).forEach(note => self.cnlList.push(note));
       }
    }
    update(drawnFrames) {
