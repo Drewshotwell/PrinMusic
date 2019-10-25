@@ -213,7 +213,7 @@ function main() {
                }
             }, 'Mute');
               
-            options = (modMap[cnl] || MusicBox).makeOptions(
+            options = (modList[j]).makeOptions(
              camera, controls, newMod);
             Object.keys(options).forEach(option => {
                instFld.add(options, option);
