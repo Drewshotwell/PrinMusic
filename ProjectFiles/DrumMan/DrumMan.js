@@ -26,7 +26,7 @@ class DrumMan extends THREE.Group {
       const armLen = 2;
       const armRot = Math.PI / 4;
       const foreArmRotInit = Math.PI / 4;
-      
+
       // Geometry / Mesh objects for symmetric arm components.
       const armGeo = new THREE.BoxBufferGeometry(armLen, 0.1, 0.1);
       const armMat = new THREE.MeshPhongMaterial();
@@ -41,7 +41,7 @@ class DrumMan extends THREE.Group {
       leftArmMesh.x = -2;
       this.rotArmHingeL(leftArmMesh, armRot);
       this.rotArmHingeL(rightForearmMesh, foreArmRotInit);
-      leftForearmMesh.x = 1 -armLeng * Math.cos(armRot) + armLen / 2;
+      leftForearmMesh.x = 1 - armLeng * Math.cos(armRot) + armLen / 2;
       leftForearmMesh.y = armLeng * Math.sin(armRot);
 
       // Right arm
@@ -74,8 +74,8 @@ class DrumMan extends THREE.Group {
                }
             }
             // If note start and curTime are less than one frame, play first note
-            if ((nte.start > curTime || (nte.start < (1000/24) &&
-               curTime < (1000/24))) && nte.start < nxtTime) { 
+            if ((nte.start > curTime || (nte.start < (1000 / 24) &&
+               curTime < (1000 / 24))) && nte.start < nxtTime) {
                switch (nte) {
                   case this.leftArmIdx:
                      // move left hand back up
@@ -91,13 +91,13 @@ class DrumMan extends THREE.Group {
       }
    }
    rotArmHingeL(arm, rad) {
-      arm.translateZ(-key.len / 2)
-         .rotateX(rad / key.len)
-         .translateZ(key.len / 2);
+      arm.translateZ(-arm.len / 2)
+         .rotateX(rad / arm.len)
+         .translateZ(arm.len / 2);
    }
    rotArmHingeR(arm, rad) {
-      arm.translateZ(key.len / 2)
-         .rotateX(rad / key.len)
-         .translateZ(-key.len / 2);
+      arm.translateZ(arm.len / 2)
+         .rotateX(rad / arm.len)
+         .translateZ(-arm.len / 2);
    }
 };
