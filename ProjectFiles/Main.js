@@ -204,7 +204,7 @@ function main() {
                instFld = gui.addFolder(
                   `${modList[j].title} ${instNum}`);
             else
-               instFld = gui.addFolder(modList[cnl].title);
+               instFld = gui.addFolder(modList[j].title);
             
             instFld.add({
                Mute: function() {
