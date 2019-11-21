@@ -13,9 +13,9 @@ class DrumMan extends THREE.Group {
       this.muteAnm = 0;
 
       // MIDI indices for the left and right percussion instruments
+      // Shouldn't be any note indices between the max and min.
       this.leftArmIdx = song.getRange(cnl).min;
       this.rightArmIdx = song.getRange(cnl).max;
-      //console.log(this.leftArmIdx, this.rightArmIdx);
 
       // Main body
       const bodyGeo = new THREE.BoxBufferGeometry(1, 3, 1);
@@ -27,24 +27,29 @@ class DrumMan extends THREE.Group {
       const armRot = Math.PI / 4;
       const foreArmRotInit = Math.PI / 4;
       
+      // Geometry / Mesh objects for symmetric arm components.
       const armGeo = new THREE.BoxBufferGeometry(armLen, 0.1, 0.1);
       const armMat = new THREE.MeshPhongMaterial();
-      const armProto = new THREE.Mesh(armGeo, armMat);
+      const armProto = new THREE.Mesh(armGeo, armMat); // for both left and rightarms
       const leftArmMesh = armProto.clone();
       const rightArmMesh = armProto.clone();
       const leftForearmMesh = armProto.clone();
       const rightForearmMesh = armProto.clone();
 
+      // Forearms are centered in respect to the end point of the base arms
+      // Left arm
       leftArmMesh.x = -2;
       this.rotArmHingeL(leftArmMesh, armRot);
-      rightArmMesh.x = 2;
-      this.rotArmHingeR(rightArmMesh, armRot);
+      this.rotArmHingeL(rightForearmMesh, foreArmRotInit);
       leftForearmMesh.x = 1 -armLeng * Math.cos(armRot) + armLen / 2;
       leftForearmMesh.y = armLeng * Math.sin(armRot);
+
+      // Right arm
+      rightArmMesh.x = 2;
+      this.rotArmHingeR(rightArmMesh, armRot);
       this.rotArmHingeR(leftforeArmMesh, foreArmRotInit);
       rightForearmMesh.x = 1 + armLeng * Math.cos(armRot) - armLen / 2;
       rightForearmMesh.y = armLeng * Math.sin(armRot);
-      this.rotArmHingeL(rightForearmMesh, foreArmRotInit);
 
       this.add(leftArmMesh, rightArmMesh, leftForearmMesh, rightForearmMesh);
    }
@@ -55,8 +60,6 @@ class DrumMan extends THREE.Group {
       const nxtTime = (time + (1 / 24) * 1000) % this.song.midPlayer.endTime;
       if (!MIDI.channels[this.cnl].mute && this.song.started) {
          for (let nte of this.song.notesMap[cnl]) {
-            const nteKey = this.keys[nte.note -
-             this.song.getRange(this.cnl).min];
             // If curTime is greater than nxtTime, must be last note
             if (nte.end > curTime && (nte.end < nxtTime || curTime > nxtTime)) {
                switch (nte) {
