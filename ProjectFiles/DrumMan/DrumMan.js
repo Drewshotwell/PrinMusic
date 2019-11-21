@@ -41,15 +41,15 @@ class DrumMan extends THREE.Group {
       leftArmMesh.x = -2;
       this.rotArmHingeL(leftArmMesh, armRot);
       this.rotArmHingeL(rightForearmMesh, foreArmRotInit);
-      leftForearmMesh.x = 1 - armLeng * Math.cos(armRot) + armLen / 2;
-      leftForearmMesh.y = armLeng * Math.sin(armRot);
+      leftForearmMesh.x = 1 - armLen * Math.cos(armRot) + armLen / 2;
+      leftForearmMesh.y = armLen * Math.sin(armRot);
 
       // Right arm
       rightArmMesh.x = 2;
       this.rotArmHingeR(rightArmMesh, armRot);
       this.rotArmHingeR(leftforeArmMesh, foreArmRotInit);
-      rightForearmMesh.x = 1 + armLeng * Math.cos(armRot) - armLen / 2;
-      rightForearmMesh.y = armLeng * Math.sin(armRot);
+      rightForearmMesh.x = 1 + armLen * Math.cos(armRot) - armLen / 2;
+      rightForearmMesh.y = armLen * Math.sin(armRot);
 
       this.add(leftArmMesh, rightArmMesh, leftForearmMesh, rightForearmMesh);
    }
