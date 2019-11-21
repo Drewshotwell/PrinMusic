@@ -4,7 +4,7 @@
  * @author cameron wood <cameron.wood@principia.edu>
  */
 
-class DrumMan extends THREE.Group {
+class DrumMan extends InstrumentModel {
    constructor(song, cnl, size) {
       super();
 
@@ -25,7 +25,7 @@ class DrumMan extends THREE.Group {
       // Arms
       const armLen = 2;
       const armRot = Math.PI / 4;
-      const foreArmRotInit = Math.PI / 4;
+      const forearmRotInit = Math.PI / 4;
 
       // Geometry / Mesh objects for symmetric arm components.
       const armGeo = new THREE.BoxBufferGeometry(armLen, 0.1, 0.1);
@@ -40,14 +40,14 @@ class DrumMan extends THREE.Group {
       // Left arm
       leftArmMesh.x = -2;
       this.rotArmHingeL(leftArmMesh, armRot);
-      this.rotArmHingeL(rightForearmMesh, foreArmRotInit);
+      this.rotArmHingeL(rightForearmMesh, forearmRotInit);
       leftForearmMesh.x = 1 - armLen * Math.cos(armRot) + armLen / 2;
       leftForearmMesh.y = armLen * Math.sin(armRot);
 
       // Right arm
       rightArmMesh.x = 2;
       this.rotArmHingeR(rightArmMesh, armRot);
-      this.rotArmHingeR(leftforeArmMesh, foreArmRotInit);
+      this.rotArmHingeR(leftForearmMesh, forearmRotInit);
       rightForearmMesh.x = 1 + armLen * Math.cos(armRot) - armLen / 2;
       rightForearmMesh.y = armLen * Math.sin(armRot);
 
@@ -58,8 +58,8 @@ class DrumMan extends THREE.Group {
       // Definition of window for which key animation will be triggered
       const curTime = time % this.song.midPlayer.endTime;
       const nxtTime = (time + (1 / 24) * 1000) % this.song.midPlayer.endTime;
-      if (!MIDI.channels[this.cnl].mute && this.song.started) {
-         for (let nte of this.song.notesMap[cnl]) {
+      if (!MIDI.channels[this.cnl.substring(3)].mute && this.song.started) {
+         for (let nte of this.song.notesMap[this.cnl]) {
             // If curTime is greater than nxtTime, must be last note
             if (nte.end > curTime && (nte.end < nxtTime || curTime > nxtTime)) {
                switch (nte) {
@@ -101,3 +101,5 @@ class DrumMan extends THREE.Group {
          .translateZ(-arm.len / 2);
    }
 };
+
+DrumMan.title = "Drum Man";
