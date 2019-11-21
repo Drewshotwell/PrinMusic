@@ -108,7 +108,7 @@ function main() {
    controls.enabled = false;
    
    /* SONG */
-   const song = new Song('GraphicProjectTest.mid', 120, ["celesta"]);
+   const song = new Song('GraphicProjectTest2.mid', 120, ["celesta"]);
    
    const modList = [];
    /* USER INTERFACE */
