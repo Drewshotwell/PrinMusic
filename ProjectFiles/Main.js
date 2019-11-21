@@ -108,9 +108,9 @@ function main() {
    controls.enabled = false;
    
    /* SONG */
-   const song = new Song('GraphicSong.mid', 120, ["drum_set"]);
+   const song = new Song('GraphicTest.mid', 120, ["celesta"]);
    
-   const modList = [MusicBox, MusicBox];
+   const modList = [];
    /* USER INTERFACE */
    const gui = new GUI();
    GUI.toggleHide();
