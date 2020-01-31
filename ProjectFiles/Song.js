@@ -70,12 +70,13 @@ class Song {
    }
    update(drawnFrames) {
       const player = this.midPlayer;
-      const frameTime = drawnFrames * 1000 % player.endTime;
+      const frameTime = drawnFrames % player.endTime;
       player.currentTime = frameTime;
       if (!player.playing) {
          player.resume();
       }
       // If song is at its end
+      console.log(Math.round(frameTime*1000)/1000, Math.round((1000/24)*1000)/1000, frameTime);
       if (Math.round(frameTime*1000)/1000 < Math.round((1000/24)*1000)/1000 &&
           frameTime > 0.1) { //necessary for beginning to start on time
          player.currentTime = 0;
