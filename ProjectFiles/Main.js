@@ -208,7 +208,8 @@ function main() {
             
             instFld.add({
                Mute: function() {
-                  song.toggle(cnl);
+                  //In order to not change when cnl changes
+                  song.toggle(newMod.cnl);
                }
             }, 'Mute');
               
