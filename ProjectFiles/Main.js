@@ -108,7 +108,7 @@ function main() {
    controls.enabled = false;
    
    /* SONG */
-   const song = new Song('MarbleMachine2.mid', 120, ["celesta"]);
+   const song = new Song('MarbleMachine2.mid', 150, ["celesta"]);
    
    const modList = [];
    /* USER INTERFACE */
