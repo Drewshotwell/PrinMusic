@@ -70,7 +70,7 @@ class Song {
    }
    update(drawnFrames) {
       const player = this.midPlayer;
-      const frameTime = drawnFrames * 1000 % player.endTime;
+      const frameTime = drawnFrames % player.endTime;
       player.currentTime = frameTime;
       if (!player.playing) {
          player.resume();
@@ -83,6 +83,7 @@ class Song {
       }
    }
    toggle(cnl) {
+      console.log(cnl);
       this.midPlayer.pause(true);
       const cnlId = cnl.substring(3);
       MIDI.channels[cnlId].mute = !MIDI.channels[cnlId].mute;

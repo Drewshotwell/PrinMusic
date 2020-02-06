@@ -108,7 +108,7 @@ function main() {
    controls.enabled = false;
    
    /* SONG */
-   const song = new Song('GraphicProjectTest2.mid', 120, ["celesta"]);
+   const song = new Song('MarbleMachine2.mid', 150, ["celesta"]);
    
    const modList = [];
    /* USER INTERFACE */
@@ -208,7 +208,8 @@ function main() {
             
             instFld.add({
                Mute: function() {
-                  song.toggle(cnl);
+                  //In order to not change when cnl changes
+                  song.toggle(newMod.cnl);
                }
             }, 'Mute');
               
@@ -222,10 +223,10 @@ function main() {
          recalculateLighting(instMods, dirLgt);
          scene.add(...instMods); 
       }
-      if (time > drawnFrames) {
+      if (time > drawnFrames + preFrames) {
          drawnFrames += 1000/fps;
          if (!instMods || !song.started)
-            preFrames += 1/fps;
+            preFrames += 1000/fps;
       
          if (song.started) {
             song.update(drawnFrames - preFrames);
@@ -239,7 +240,7 @@ function main() {
          // Update light positions
          dirLgt.target.updateMatrixWorld();
          dirLgt.shadow.camera.updateProjectionMatrix();
-         if (!hasRendered && song.loaded && time < drawnFrames + 1/fps) {
+         if (!hasRendered && song.loaded) {
             document.getElementById("startButton").style.display = 'block';
             document.getElementById("loading").style.display = 'none';
             hasRendered = true;
