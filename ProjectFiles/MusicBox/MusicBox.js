@@ -8,8 +8,6 @@ class MusicBox extends InstrumentModel {
    constructor(song, cnl, size = 5) {
       super(song, cnl, size);
 
-      this.cnl = cnl;
-
       const cylPlayer = new MusicBox.CylinderPlayer(song, cnl, size);
       this.add(cylPlayer);
       
