@@ -55,4 +55,4 @@ for (let nte of this.song.notesMap[`cnl${this.cnl}`]) {
 
 ## Further details
 
-Consult the `General Documentation.txt` file for further details about how each class works.
+The page deployment is both on [GitHub Pages](https://drewshotwell.github.io/PrinMusic/) and [Netlify](http://prinmusic.netlify.com/). If it only shows a black screen and has several errors in the console, consider doing a soft reload and it should work perfectly. Consult the `General Documentation.txt` file for further details about how each class works.
