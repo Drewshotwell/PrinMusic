@@ -208,7 +208,7 @@ function main() {
             
             instFld.add({
                Mute: function() {
-                  song.toggle(cnl);
+                  song.toggle(newMod.cnl);
                }
             }, 'Mute');
               
